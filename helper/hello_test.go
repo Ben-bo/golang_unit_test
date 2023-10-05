@@ -8,6 +8,12 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+type dataUser struct {
+	name     string
+	request  string
+	expected string
+}
+
 // before test (only run per package)
 func TestMain(t *testing.M) {
 
@@ -30,6 +36,28 @@ func TestHello(t *testing.T) {
 }
 
 func TestSubTest(t *testing.T) {
+	testedUser2 := dataUser{
+		name:     "user2",
+		request:  "user2",
+		expected: "hello user2",
+	}
+	users := []dataUser{
+		{
+			name:     "user1",
+			request:  "user1",
+			expected: "hello user1",
+		},
+		testedUser2,
+	}
+
+	for _, user := range users {
+		t.Run("testing "+user.name, func(t *testing.T) {
+			result := Hello(user.request)
+
+			require.Equal(t, user.expected, result)
+		})
+	}
+
 	t.Run("testing Beni", func(t *testing.T) {
 		result := Hello("beni")
 
