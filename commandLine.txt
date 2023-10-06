@@ -1,0 +1,12 @@
+go test -v -bench=.
+=> run unit test beserta bencmark
+
+go test -v -run=NotMathUnitTest  -bench=.
+=> run bencmark tanpa unit test (akan mencari nama test dengan nama NotMathUnitTest, karena tidak ditemukan maka tidak akan merun semua unit test. pastikan unit test tidak ada yang bernama NotMathUnitTest )
+
+
+go test -v -run=NotMathUnitTest  -bench=(nama bencmark)
+=> run spesific bencmark
+
+
+
