@@ -9,7 +9,7 @@ type MockCategoryRepository struct {
 	Mock mock.Mock
 }
 
-func (mock *MockCategoryRepository) findById(Id string) *entity.Category {
+func (mock *MockCategoryRepository) FindById(Id string) *entity.Category {
 	arguments := mock.Mock.Called(Id)
 
 	if arguments.Get(0) == nil {
