@@ -37,3 +37,19 @@ func TestCategoryServiceGetSuccess(t *testing.T) {
 	assert.NotNil(t, category)
 	assert.ObjectsAreEqual(dataCategory, category)
 }
+
+func BenchmarkCategoryService(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		dataCategory := entity.Category{
+			Id:   "2",
+			Name: "test",
+		}
+
+		//programm mock
+		categoryRepository.Mock.On("FindById", "2").Return(dataCategory)
+
+		category, _ := categoryService.GetCategory("2")
+
+		assert.ObjectsAreEqual(dataCategory, category)
+	}
+}
